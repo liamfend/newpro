@@ -2,12 +2,23 @@
 version: 2.1
 # Use a package of configuration called an orb.
 orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
+  node: circleci/node@2.0.2
+
+jobs:
+  build:
+    executor:
+      name: node/default
+      tag: '12.18.3'
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+      - run: npm run test
 # Orchestrate or schedule a set of jobs
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  matrix-tests:
     jobs:
-      - welcome/run
+      - node/test:
+          version: v12.18.3
+

@@ -2,7 +2,7 @@
 version: 2.1
 # Use a package of configuration called an orb.
 orbs:
-  node: circleci/node@2.0.2
+  node: circleci/node@4.0.0
 
 jobs:
   build:
@@ -16,6 +16,12 @@ jobs:
             - run: npm install
       - run: npm run test
 # Orchestrate or schedule a set of jobs
+workflows: 
+  version: 2.1
+  doit: 
+    jobs:
+      - build
+      
 # workflows:
 #   matrix-tests:
 #     jobs:

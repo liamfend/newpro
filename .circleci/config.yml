@@ -6,7 +6,11 @@ orbs:
 
 jobs:
   build:
-    - node/test
+    docker:
+      - image: cimg/node:15.1.0
+    steps:
+      - checkout
+      - run: npm run test
 # Orchestrate or schedule a set of jobs
 workflows: 
   version: 2.1

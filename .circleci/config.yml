@@ -6,15 +6,7 @@ orbs:
 
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '12.18.3'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
+    - node/test
 # Orchestrate or schedule a set of jobs
 workflows: 
   version: 2.1
